@@ -1,0 +1,116 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #090c10;
+  font-family: 'Fira Mono', 'Courier New', Courier, monospace;
+  overflow: hidden;
+}
+
+/* Dark map area */
+#map {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* Transparent hacker log panel overlay */
+#log-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 400px;
+  height: 100vh;
+  pointer-events: auto;
+  background: rgba(15, 15, 20, 0.12);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-y: auto; /* enables vertical scrolling! */
+  scrollbar-width: none; /* Firefox: hide scrollbar */
+  -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
+}
+#log-panel::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Each log notification popup */
+.log-entry {
+  min-width: 330px;
+  max-width: 95%;
+  margin: 12px 18px 0 0;
+  border-radius: 8px;
+  background: rgba(18, 20, 28, 0.14);
+  box-shadow: 0 0 10px #00ff80, 0 0 2px #000;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #00ffcc;
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  animation: logPopIn 0.8s cubic-bezier(0.6,1.4,0.2,1) forwards;
+  border-left: 4px solid #0f0;
+  text-shadow: 0 0 4px #0ff, 0 0 1px #222;
+  pointer-events: auto;
+  user-select: text;
+}
+
+@keyframes logPopIn {
+  0% { opacity: 0; transform: translateY(30px) scale(0.96);}
+  80% { opacity: 1; transform: translateY(-2px) scale(1.05);}
+  100% { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+.log-entry.tcp { border-left-color: #00ff00; color: #00ff00; text-shadow: 0 0 8px #0f0;}
+.log-entry.udp { border-left-color: #ffe000; color: #ffe000; text-shadow: 0 0 8px #ff0;}
+.log-entry.icmp { border-left-color: #ff0055; color: #ff0055; text-shadow: 0 0 8px #f00;}
+.log-entry.you { border-left-color: #00fff7; color: #00fff7; text-shadow: 0 0 10px #0ff;}
+.log-entry .ip { font-weight: bold; letter-spacing: 1px; }
+.log-entry .country { color: #0ff; }
+.log-entry .hostname { color: #ffd700; font-weight: bold;}
+.log-entry .size { color: #fff; font-weight: bold; }
+.log-entry .proto { font-weight: bold; letter-spacing: 2px; }
+
+/* Fade out old log popups */
+.log-entry.fadeout {
+  opacity: 0.12 !important;
+  transition: opacity 1.2s cubic-bezier(0.6,1.4,0.2,1);
+}
+
+/* YOU marker glow */
+.marker-self {
+  box-shadow: 0 0 15px #00ffe9, 0 0 2px #000;
+}
+
+.leaflet-popup-content {
+  font-family: inherit;
+  font-size: 16px;
+  color: #00ffe9;
+  background: #111;
+  text-shadow: 0 0 5px #0ff, 0 0 1px #222;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #161922;
+  border: 2px solid #00ffe9;
+  box-shadow: 0 0 12px #00ffe9;
+}
+
+.leaflet-popup-tip {
+  background: #161922;
+  border: 2px solid #00ffe9;
+}
+
+.leaflet-control-attribution {
+  background: rgba(15,15,20,0.6)!important;
+  color: #00ffe9!important;
+  font-family: inherit;
+  font-size: 13px;
+  text-shadow: 0 0 2px #0ff;
+}
