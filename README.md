@@ -16,6 +16,9 @@ Perfect for network monitoring, cybersecurity analysis, or just exploring where 
 
 ---
 
+![Example Screenshot](https://i.imgur.com/LDeWrDL.png)  
+
+
 ## 🛠 Installation (Windows)
 
 ### 1️⃣ Prerequisites
